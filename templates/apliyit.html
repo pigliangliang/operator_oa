@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+{{ itf.as_p }}
+
+<input value="提交" type="submit">
+
+
+</form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>当前登陆用户为：{{ request.user.username }} <a href="{% url 'users:logout' %}">点击退出</a></p>
+<p>可申请流程如下：</p>
+{% for ct in casetype %}
+   <ul> <a href="{% url 'gongdan:apliy' ct.auditmodle_id %}">{{ ct.title }}</a></ul>
+
+{% endfor %}
+<p>我创建的流程如下：
+    {% for mc in mycase %}
+
+        <ul><a href="{% url 'gongdan:caseinfo' mc.caseid%}">{{ mc.casename }}</a></ul>
+    {% endfor %}
+</p>
+<p>我的待审批的流程如下：
+    {% for k,v in case.items %}
+
+        <a href="{% url 'gongdan:audit' k %}">
+            <ul>{{ v }}</ul>
+
+</a>
+    {% endfor %}
+</p>
+
+<p>我的历史审批的流程如下：
+    {% for k,v in historycases.items %}
+
+        <a href="{% url 'gongdan:caseinfo' k %}">
+            <ul>{{ v }}</ul>
+
+</a>
+    {% endfor %}
+
+
+</body>
+</html>
