@@ -5,11 +5,17 @@
     <title>Title</title>
 </head>
 <body>
+<ul>
 <form method="post">
     {% csrf_token %}
 
 {{ usercase.casename }}{{ usercase.caseinfo }}
-<input type="submit" value="审核"><input type="submit" value="退回">
-</form>
+        <ul>审核意见：
+        <input type="text" name="audit" value="同意申请">
+       <input type="submit" name="pass" value="提交">
+            <input type="submit" name="backtostart" value="驳回到发起人">
+            <input type="submit" name="backonestep" value="退回到上一级">
+       </ul>
+</form></ul>
 </body>
 </html>

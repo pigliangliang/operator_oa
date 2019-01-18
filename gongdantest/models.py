@@ -2,6 +2,8 @@ from django.db import models
 from users.models import MyUser
 # Create your models here.
 
+from datetime import datetime
+
 class AuditProcess(models.Model):
     """
     审批过程
@@ -78,6 +80,9 @@ class AuditRecodr(models.Model):
     historaudituser = models.CharField('历史审批人',max_length=32)
     status = models.IntegerField("审批节点",default=0)
     current = models.IntegerField('当前审批阶段')
+    auditcontents = models.CharField('审核意见',max_length=300,default='同意申请')
+    rejectflag =models.IntegerField('是否驳回',default=0)#0表示未被驳回，设置为1表示被驳回。
+    audittime = models.DateTimeField('审批时间',default=datetime.now)
 
 
     class Meta:
@@ -95,6 +100,8 @@ class UserCase(models.Model):
     username = models.CharField('创建用户',max_length=100)
     caseinfo = models.TextField('工单内容')
     workflowid = models.IntegerField('所属工作流',default=1)
+    ctime = models.DateTimeField('创建时间',default=datetime.now)
+    rejectflag = models.IntegerField('是否驳回', default=0)  # 0表示未被驳回，设置为1表示被驳回。
 
 
     def __str__(self):

@@ -11,17 +11,31 @@
    <ul> <a href="{% url 'gongdan:apliy' ct.auditmodle_id %}">{{ ct.title }}</a></ul>
 
 {% endfor %}
+
+
 <p>我创建的流程如下：
     {% for mc in mycase %}
 
         <ul><a href="{% url 'gongdan:caseinfo' mc.caseid%}">{{ mc.casename }}</a></ul>
     {% endfor %}
 </p>
+
+<p>我被驳回的流程如下：
+    {% for k,v in rejectcasts.items %}
+
+        <ul><a href="{% url 'gongdan:caseinfo' k%}">{{v}}</a></ul>
+    {% endfor %}
+</p>
+
+
+
 <p>我的待审批的流程如下：
     {% for k,v in case.items %}
 
         <a href="{% url 'gongdan:audit' k %}">
-            <ul>{{ v }}</ul>
+            <ul>
+                {{ v }}
+            </ul>
 
 </a>
     {% endfor %}
